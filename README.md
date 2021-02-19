@@ -2,12 +2,16 @@
 
 Backend API runs n simulations of the Monty Hall paradox, with random switching of choices.
 
-The API endpoint is implemented in a way that simulates a very long running operation, using yield to return a iterable
+The API endpoint is implemented in a way that simulates a very long-running operation, using yield to return an iterable
 subset of the processed simulation so that the frontend can react and show the progress of the operation.
 
 ## How to run
 
-There is a Dockerfile included so you can run in from a container.
+There is a Dockerfile included, so you can run in from a container.
+
+## Don't forget to change the line endings in start.sh
+
+Open the file in notepad and change the line endings from Windows to Linux
 
 ## Monty Hall problem
 
