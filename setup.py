@@ -8,5 +8,5 @@ setup(
     license='',
     author='bojan',
     author_email='bojanskr@gmail.com',
-    description=''
+    description='n simulations of the Monty Hall paradox, with random switching of choices'
 )
