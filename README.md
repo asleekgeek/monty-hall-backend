@@ -1,5 +1,5 @@
 # Monty Hall n simulation Python Flask API
-Backend API runs n simulations of the Monty-Hall gameMonty Hall paradox, with random switching of choices.
+Backend API runs n simulations of the Monty Hall paradox, with random switching of choices.
 
 The API endpoint is implemented in a way that simulates a very long running operation, using yield to return a iterable subset of the processed simulation so that the frontend can react and show the progress of the operation.
 
