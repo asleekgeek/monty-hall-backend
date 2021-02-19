@@ -1,4 +1,4 @@
-from flask import jsonify, Response
+from flask import Response, json
 
 from game import monty_hall_game
 from service import app
@@ -16,17 +16,28 @@ def home():
 @app.route('/monty_hall_simulations/<int:n>', methods=['GET'])
 def simulation(n):
     def generate():
-        for i in range(1, n):
-            game_result = monty_hall_game.game(i)
-            # there is a possibility to group the simulated games in chunks here
-            # now the API method is only yielding back the simulated games one by one
-            yield game_result
+        games = range(n).__iter__()
 
-    return Response(jsonify(generate(),
-                            message="",
-                            category="success",
-                            status=200
-                            ))
+        yield '['
+
+        try:
+            game = next(games)
+            result = monty_hall_game.game(game)
+            yield json.dumps(result)
+        except StopIteration:
+            # no results – close array and stop iteration
+            yield ']'
+            raise StopIteration
+
+        # loop over remaining results
+        for gg in games:
+            result = monty_hall_game.game(gg)
+            yield ", " + json.dumps(result)
+
+        # close array
+        yield "]"
+
+    return Response(generate(), content_type="application/json")
 
 
 if __name__ == "__main__":

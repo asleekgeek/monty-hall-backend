@@ -25,4 +25,4 @@ def game(n: int):
     player_switched = switch_door != contestant_guess
     player_won = prize == switch_door
 
-    return {"game_number": n, "player_switched": player_switched, "player_won": player_won}
+    return dict(game_number=n + 1, player_switched=player_switched, player_won=player_won)
