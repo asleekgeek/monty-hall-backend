@@ -20,9 +20,13 @@ def simulation(n):
             game_result = monty_hall_game.game(i)
             # there is a possibility to group the simulated games in chunks here
             # now the API method is only yielding back the simulated games one by one
-            yield jsonify(game_result)
+            yield game_result
 
-    return Response(generate())
+    return Response(jsonify(generate(),
+                            message="",
+                            category="success",
+                            status=200
+                            ))
 
 
 if __name__ == "__main__":
