@@ -8,17 +8,17 @@ from service.decorator import validate_parameter
 # home route just returns a description of our API
 @app.route("/")
 def home():
-    return 'Monty Hall problem simulations with random switch and without after the initial reveal of the first door'
+    return "Monty Hall problem simulations with random switch and without after the initial reveal of the first door"
 
 
 # API call for running simulations, where n is the number of simulated games
 @validate_parameter
-@app.route('/monty_hall_simulations/<int:n>', methods=['GET'])
+@app.route("/monty_hall_simulations/<int:n>", methods=['GET'])
 def simulation(n):
     def generate():
         games = range(n).__iter__()
 
-        yield '['
+        yield "["
 
         try:
             game = next(games)
@@ -26,7 +26,7 @@ def simulation(n):
             yield json.dumps(result)
         except StopIteration:
             # no results – close array and stop iteration
-            yield ']'
+            yield "]"
             raise StopIteration
 
         # loop over remaining results

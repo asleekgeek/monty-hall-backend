@@ -1,12 +1,15 @@
 import time
 
+from flask import Response
+
 
 def validate_parameter(func):
     def one_param_func(n):
-        if n <= 0:
-            return ConnectionAbortedError()
-
-        return func(n)
+        if n < 0:
+            Response(status=406, content_type="application/json")
+            # raise NotAcceptable("Negative parameters are not allowed")
+        else:
+            return func(n)
 
     return one_param_func
 
